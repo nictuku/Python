@@ -1,0 +1,18 @@
+dependencies:
+  build:
+    - python:3.6.3
+
+build_targets:
+  - name: default
+    environment:
+      - LANG=C.UTF-8
+    commands:
+      - pip install -r requirements.txt
+      - python -m pip install --upgrade pip
+      - python -m pip install --upgrade pre-commit
+      - pre-commit run --verbose --all-files --show-diff-on-failure
+
+ci:
+  builds:
+    - name: default
+      build_target: default
